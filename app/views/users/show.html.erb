@@ -1,2 +1,8 @@
-<h1>Hello, <%= @user.username %>! Welcome to Restaurant Finder!</h1> 
+<h1>Hello, <%= @user.username %>! Welcome to your Restaurant Finder Home Page!</h1> 
 <h2>Catalog all your favorite places to eat!</h2> 
+<h3>Here are all <%= @user.username %>'s restaurants:</h3>
+<ul>
+  <% @user.restaurants.each do |r|%>
+  <li> <%= link_to r.created_restaurants, restaurants_path(r)%> </li> 
+  <% end %>
+</ul>

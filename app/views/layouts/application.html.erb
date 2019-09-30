@@ -9,29 +9,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <div><%= render_nav_bar %></div>
+
   <body>
-  <% if logged_in? %> 
-  <nav class='navbar'>
- <button><%= link_to 'Log Out', '/logout', method: :delete %></button>  
-
-  <button><%= link_to 'My Restaurants', restaurants_path, class:'button' %></button>
-
-  <button><%= link_to 'All Restaurants', all_restaurants_path, class:'button' %></button>
-
-  <button><%= link_to 'New Restaurant', new_restaurant_path, class:'button' %></button>
-
-  <button><%= link_to 'Companies', all_companies_path, class:'button' %></button>
-
-  <button><%= link_to 'New Company', new_company_path, class:'button' %></button>
-
-  <button><%= link_to 'All Reviews', reviews_path, class:'button' %></button>
-
-  <button><%= link_to 'New Review', review_path, class:'button' %></button>
-  </nav> 
-  <% else %>
-    <%= link_to 'Log In', login_path %>
-  <% end %>
-  <div class='container'>
     <%= yield %>
   </body>
 </html>
