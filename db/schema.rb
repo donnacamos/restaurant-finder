@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(version: 2019_09_30_203813) do
     t.string "name"
     t.string "type"
     t.integer "price_range"
+    t.string "address"
     t.integer "user_id"
+    t.integer "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
