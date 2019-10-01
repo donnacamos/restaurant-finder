@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     end 
 
     def new 
-        
+        @user = User.new 
     end 
 
     def create
@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
 
     def destroy 
       session.clear 
-      redirect_to root_path 
+      redirect_to '/'
     end 
 
     def omniauth
