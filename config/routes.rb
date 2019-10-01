@@ -9,10 +9,13 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
-  
-  resources :companies
+  resources :restaurants do 
+    resources :companies, only: [:new, :index]
+  end  
   resources :reviews
-  resources :restaurants
-  resources :users
+  resources :restaurants do 
+    resources :reviews, only: [:new, :index] 
+  end 
+  resources :users, only: [:show]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
