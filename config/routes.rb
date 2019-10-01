@@ -9,15 +9,12 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback' => 'sessions#create'
  
-  resources :reviews
+  
   resources :restaurants do 
     resources :reviews, only: [:new, :index] 
-  end 
-  resources :companies 
-  resources :restaurants 
-  resource :restaurants do
     resources :companies, only: [:new, :index]
   end 
-  resources :users, only: [:show]
+  
+  resources :users, only: [:show] 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
