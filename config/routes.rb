@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create' 
   delete '/logout' => 'sessions#destroy'
 
-  get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
  
   resources :restaurants 
-  
+
   resources :restaurants do 
     resources :reviews, only: [:new, :index] 
     resources :companies, only: [:new, :index]
