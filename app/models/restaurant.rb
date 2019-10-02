@@ -4,7 +4,7 @@ class Restaurant < ApplicationRecord
     has_many :reviews
     has_many :users, through: :reviews 
 
-    accepts_nested_attributes_for :company
+    #accepts_nested_attributes_for :company
 
     validates :name, :type, :price_range, :address, presence: true  
     validates :name, :address, uniqueness: true  

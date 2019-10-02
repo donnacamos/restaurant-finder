@@ -1,7 +1,7 @@
 class RestaurantsController < ApplicationController
     def new 
         @restaurant = Restaurant.new 
-        @restaurant.build_company
+       # @restaurant.companies.build 
     end 
 
     def create

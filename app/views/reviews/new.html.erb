@@ -1,8 +1,8 @@
-<h1>Add a Review</h1> 
+<h1>Add a Review for <%= @review.restaurant.name %></h1> 
 <% form_for @review do %> 
     <div>
       <%= f.label :stars %>
-      <%= f.text_field :stars, min:1, max:5 %>
+      <%= f.text_field :stars, min:0, max:5 %>
     </div>
     <div>
       <%= f.label :title %>
@@ -10,7 +10,7 @@
     </div>
     <div>
       <%= f.label :content %>
-      <%= f.text_area :content %>
+      <%= f.text_area :content, size: "25x10" %>
     </div>
       <%= f.hidden_field :restaurant_id %>  
       <%= f.submit "Create new Review" %> 
