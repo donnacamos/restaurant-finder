@@ -18,18 +18,20 @@ class SessionsController < ApplicationController
         @user = User.create_by_google_omniauth(auth)
         session[:user_id] = @user.id
         redirect_to user_path(@user)
+  
+      else
+  
 
-      else 
-        @user = User.find_by(username: params[:user][:username]) 
-          
-        if @user && @user.authenticate(params[:user][:password])
-          session[:user_id] = @user.id 
-          redirect_to user_path(@user) 
-        else 
-          flash[:error] = "Sorry, please try again." 
-          redirect_to login_path 
-        end 
-      end 
+        @user = User.find_by(username: params[:user][:username])
+  
+        if @user && @user.authenticate(password: params[:user][:password])
+          session[:user_id] = @user.id
+          redirect_to user_path(@user)
+        else
+          flash[:error] = "Sorry, login info was incorrect. Please try again."
+          redirect_to login_path
+        end
+      end
     end
 
     def omniauth 
