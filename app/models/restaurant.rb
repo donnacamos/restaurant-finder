@@ -6,8 +6,8 @@ class Restaurant < ApplicationRecord
 
     #accepts_nested_attributes_for :company
 
-    validates :name, :type, :price_range, :address, presence: true  
-    validates :name, :address, uniqueness: true  
+    validates :name, presence: true  
+    validates :address, uniqueness: true  
     validates :not_a_duplicate 
 
     scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
