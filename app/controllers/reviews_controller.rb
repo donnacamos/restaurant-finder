@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+    before_action :redirect_if_not_logged_in 
     def new 
         Restaurant.find_by_id(params[":restaurant_id"]) 
         @review = @restaurant.reviews.build
