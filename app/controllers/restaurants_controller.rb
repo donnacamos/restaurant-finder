@@ -5,6 +5,7 @@ class RestaurantsController < ApplicationController
 
     def new 
         @restaurant = Restaurant.new  
+        @restaurant.build_category 
     end 
 
     def create
@@ -14,13 +15,13 @@ class RestaurantsController < ApplicationController
        if @restaurant.save #this is where validations happen
          redirect_to restaurant_path(@restaurant) 
        else
-        @restaurant.build_company 
+        @restaurant.build_category  
          render :new
        end
      end
 
     def index 
-      @restaurants = Restaurant.order_by_rating.includes(:company)  
+      @restaurants = Restaurant.order_by_rating.includes(:category)   
     end 
 
     def show 
