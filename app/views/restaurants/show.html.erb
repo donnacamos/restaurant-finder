@@ -7,7 +7,6 @@
   <p><%= @restaurant.address %></p>
 </div>
 
-<h3>Added by: <%= link_to @restaurant.user, user_path(@user)%> </h3>
 
 <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) if @restaurant.user == current_user%>
 
