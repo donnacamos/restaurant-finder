@@ -4,8 +4,7 @@ class RestaurantsController < ApplicationController
 
 
     def new 
-        @restaurant = Restaurant.new 
-        @restaurant.build_company  
+        @restaurant = Restaurant.new  
     end 
 
     def create
@@ -41,7 +40,7 @@ class RestaurantsController < ApplicationController
     private 
 
     def restaurant_params
-        params.require(:restaurant).permit(:name, :category, :price_range, :address, :company_id, company_attributes: [:name])
+        params.require(:restaurant).permit(:name, :price_range, :address, :category_id, category_attributes: [:name])
       end
 
     def set_restaurant
