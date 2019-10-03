@@ -1,1 +1,8 @@
-<h1>All the companies!</h1>
+<h1>All the Companies</h1>
+
+<ol>
+  <% @companies.each do |company| %>
+    <li><%= company.name%></li>
+  <% end %>
+</ol>
+
