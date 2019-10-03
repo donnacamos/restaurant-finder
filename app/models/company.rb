@@ -3,5 +3,7 @@ class Company < ApplicationRecord
 
     validates :name, presence: true, uniqueness: true 
     validates :year_founded, presence: true, length: {minimum: 4} 
+
+    scope :alpha -> {order(:name)} 
     
 end
