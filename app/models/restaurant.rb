@@ -1,6 +1,6 @@
 class Restaurant < ApplicationRecord
     belongs_to :user
-    belongs_to :company  
+    belongs_to :category   
     has_many :reviews
     has_many :users, through: :reviews 
 
@@ -8,7 +8,7 @@ class Restaurant < ApplicationRecord
 
     validates :name, presence: true  
     validates :address, uniqueness: true  
-    validates :not_a_duplicate 
+    validate :not_a_duplicate 
 
     scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
 
@@ -16,9 +16,9 @@ class Restaurant < ApplicationRecord
         order(:name) 
     end
 
-    def company_attributes=(attributes)
-        self.company = Company.find_or_create_by(attributes) if !attributes['name'].empty?
-        self.company
+    def category_attributes=(attributes)
+        self.category = Category.find_or_create_by(attributes) if !attributes['name'].empty?
+        self.category 
     end
 
     def not_a_duplicate
@@ -29,8 +29,12 @@ class Restaurant < ApplicationRecord
         end
     end 
 
-    def name_and_type
-        "#{name} - #{type}"
-    end
+    def category_name
+        category.try(:name)
+      end
+    
+      def name_and_category
+        "#{name} - #{category.try(:name)}"
+      end
  
 end

@@ -10,7 +10,7 @@
   <% else %>
     <div>
       <%= f.label :restaurant_id, "Select a Restaurant" %>
-      <%= f.collection_select :restaurant_id, Restaurant.alpha, :id, :name_and_type, include_blank: true %>
+      <%= f.collection_select :restaurant_id, Restaurant.alpha, :id, :name_and_category, include_blank: true %>
     </div>
   <% end %>
   <div>
