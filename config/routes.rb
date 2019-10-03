@@ -9,11 +9,10 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback' => 'sessions#create'
  
-  resources :restaurants 
-
+ 
+  resources :reviews 
   resources :restaurants do 
-    resources :reviews, only: [:new, :index] 
-    resources :companies, only: [:new, :index]
+    resources :reviews, only: [:new, :index]  
   end 
   
   resources :users, only: [:show] 

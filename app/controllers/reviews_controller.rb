@@ -8,16 +8,29 @@ class ReviewsController < ApplicationController
       @review = Review.create(review_params) 
       if @review.save
       redirect_to review_path(@review) 
+      else 
+        render :new
+      end 
     end 
 
-    def show 
-      @review.restaurant
-    end 
-
+    def show
+        @review = Review.find_by_id(params[:id])
+    end
+    
     def index
-    end 
+        #how do i check if it's nested & a valid id
+    if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+          #nested
+          @reviews = @restaurant.reviews
+        else
+          #it's not nested
+          @reviews = Review.all
+        end
+      end
+
+    private 
 
     def review_params
-        params.require(review)permit(:stars, :title, :content, :restaurant_id) 
+        params.require(:review)permit(:restaurant_id, :stars, :title, :content) 
     end 
 end

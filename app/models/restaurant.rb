@@ -9,5 +9,9 @@ class Restaurant < ApplicationRecord
     validates :name, :type, :price_range, :address, presence: true  
     validates :name, :address, uniqueness: true  
     validates :name, length: { minimum: 3} 
+
+    scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
+
+    
  
 end
