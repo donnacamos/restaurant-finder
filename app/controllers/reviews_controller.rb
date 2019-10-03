@@ -1,9 +1,13 @@
 class ReviewsController < ApplicationController
     before_action :redirect_if_not_logged_in 
-    def new 
-        Restaurant.find_by_id(params[":restaurant_id"]) 
-        @review = @restaurant.reviews.build
-    end 
+    
+    def new
+        if @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+          @review = @restaurant.reviews.build
+        else
+          @review = Review.new
+        end
+      end
 
     def create
       @review = Review.create(review_params) 
@@ -32,7 +36,7 @@ class ReviewsController < ApplicationController
     private 
 
     def review_params
-        params.require(:review)permit(:restaurant_id, :content, :stars, :title)  
+        params.require(:review).permit(:restaurant_id, :content, :stars, :title)  
     end 
 
 

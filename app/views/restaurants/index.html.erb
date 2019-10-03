@@ -2,9 +2,8 @@
 
 <% @restaurants.each do |r| %>
 
-  <h2><%= link_to r.name, restaurant_path(r.id)%> - <%= r.category.name %> </h2>
-  <%= link_to "Write a review", new_restaurant_review_path%>
-  <% end %>
+  <h2><%=  r.name%> - <%= r.category.name %> </h2>
   <div> 
     <p><%= r.address %></p> 
+    <% end %>
   </div>
