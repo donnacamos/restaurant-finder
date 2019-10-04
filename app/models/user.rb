@@ -10,8 +10,10 @@ class User < ApplicationRecord
     validates :email, presence: true 
 
     def self.create_by_google_omniauth(auth)
-      self.find_or_create_by(username: auth[:info][:email]) do |u|
-        u.password = SecureRandom.hex
+      where(email: auth.info.email).first_or_initialize do |user|
+        user.username = auth.info.name
+        user.email = auth.info.email
+        user.password = SecureRandom.hex
       end
     end
 end
