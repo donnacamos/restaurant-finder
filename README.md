@@ -8,17 +8,17 @@ Welcome to the Restaurant Finder App. You can create your own account, catalog a
 
 1.Fork and clone this repository, and then within the main directory execute
 
-bundle install
+`bundle install`
 
 2.Then run:
 
-rails s
+`rails s`
 
 3.Open up a new browser tab and navigate to:
 
 http://localhost:3000
 
-4.Press ctrl+C to shut it down
+4.Press ctrl+C to shut it down 
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/donnacamos/restaurant-finder. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
