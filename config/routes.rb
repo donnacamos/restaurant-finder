@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :categories
+  resources :categories 
   get '/' => 'sessions#home' 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
