@@ -1,5 +1,4 @@
 class RestaurantsController < ApplicationController
-    before_action :set_restaurant, only:[:show, :edit, :update] 
     before_action :redirect_if_not_logged_in
 
 
@@ -25,14 +24,15 @@ class RestaurantsController < ApplicationController
     end 
 
     def show 
+      set_restaurant 
     end 
 
     def edit 
-      @restaurant = Restaurant.find_by(id: params[:id]) 
+     set_restaurant 
     end 
 
     def update 
-      @restaurant = Restaurant.find_by(id: params[:id])   
+      set_restaurant   
       if @restaurant.update(restaurant_params)
         redirect_to restaurant_path(@restaurant)
       else
