@@ -12,7 +12,7 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.new(restaurant_params) 
         @restaurant.user_id = session[:user_id] 
    
-       if @restaurant.save #this is where validations happen
+       if @restaurant.save 
          redirect_to restaurant_path(@restaurant) 
        else
         @restaurant.build_category  
@@ -28,9 +28,11 @@ class RestaurantsController < ApplicationController
     end 
 
     def edit 
+      @restaurant = Restaurant.find_by(id: params[:id]) 
     end 
 
     def update 
+      @restaurant = Restaurant.find_by(id: params[:id])   
       if @restaurant.update(restaurant_params)
         redirect_to restaurant_path(@restaurant)
       else
