@@ -28,7 +28,13 @@ class RestaurantsController < ApplicationController
     end 
 
     def edit 
+     redirect_if_not_authorized
      set_restaurant 
+     if authorized_to_edit?(@restaurant) 
+      render :edit_restaurant  
+     else 
+      render :restaurants 
+     end
     end 
 
     def update 
@@ -50,4 +56,13 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find_by(id: params[:id])
         redirect_to restaurants_path if !@restaurant 
      end
+
+     def redirect_if_not_authorized 
+      if @restaurant.user == current_user && params[:name, :price_range, :address] != "" 
+        @restaurant.update(name: params[:name], price_range: params[:price_range], address: params[:address])  
+        redirect_to restaurant_path(@restaurant)
+      else
+        redirect_to user_path(@user) 
+      end 
+    end 
 end
