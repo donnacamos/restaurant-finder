@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
     before_action :redirect_if_not_logged_in
-
+    before_action :set_restaurant, only: [:show, :edit, :update] 
 
     def new 
         @restaurant = Restaurant.new  
@@ -15,7 +15,7 @@ class RestaurantsController < ApplicationController
          redirect_to restaurant_path(@restaurant) 
        else
         @restaurant.build_category  
-         render :new
+         render :new 
        end
      end
 
@@ -30,11 +30,9 @@ class RestaurantsController < ApplicationController
     end 
 
     def show 
-      set_restaurant 
     end 
 
     def edit 
-      set_restaurant
       if authorized_to_edit?(@restaurant) 
        render :edit   
       else 
@@ -42,13 +40,16 @@ class RestaurantsController < ApplicationController
       end
      end 
 
-    def update 
-      set_restaurant   
+    def update   
       if @restaurant.update(restaurant_params)
         redirect_to restaurant_path(@restaurant)
       else
         render :edit
       end 
+    end 
+
+    def most_popular 
+      @restaurants = Restaurant.most_popular 
     end 
 
     private 

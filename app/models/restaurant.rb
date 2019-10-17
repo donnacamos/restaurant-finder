@@ -11,6 +11,7 @@ class Restaurant < ApplicationRecord
     validate :not_a_duplicate 
 
     scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
+    scope :most_popular, -> {left_joins(:reviews).group(:id).order('count(reviews.id) desc').limit(3)}  
 
     def self.alpha
         order(:name) 
