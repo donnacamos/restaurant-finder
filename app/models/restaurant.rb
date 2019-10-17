@@ -37,4 +37,5 @@ class Restaurant < ApplicationRecord
         "#{name} - #{category.try(:name)}"
       end
  
+      
 end
